@@ -1,14 +1,25 @@
 const sounds = ['applause', 'boo', 'gasp', 'tada', 'victory', 'wrong']
 
 sounds.forEach((sound) => {
-  const btn = document.createElement('button') // creates the button variable
-  btn.classList.add('btn') // adds the btn class for styling
+  const btn = document.createElement('button')
+  btn.classList.add('btn')
 
   btn.innerText = sound
 
   btn.addEventListener('click', () => {
+    stopSongs()
+
     document.getElementById(sound).play()
   })
 
-  document.getElementById('buttons').appendChild(btn) // used to style the buttons
+  document.getElementById('buttons').appendChild(btn)
 })
+
+function stopSongs() {
+  sounds.forEach((sound) => {
+    const song = document.getElementById(sound)
+
+    song.pause()
+    song.currentTime = 0
+  })
+}
